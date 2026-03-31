@@ -5,6 +5,7 @@
 - `process.py`：原始数据预处理（分词、构建词表、生成训练/测试集）
 - `train.py`：模型训练并保存最佳权重
 - `predict.py`：加载训练好的模型进行交互式预测
+- `evaluate.py`：加载测试集并计算模型准确率（Accuracy）
 
 **此项目说明由ChatGPT 5.3生成**
 
@@ -51,7 +52,20 @@ python src\predict.py
 - 启动后输入一句中文文本并回车，返回情感预测概率
 - 输入 `q` 或 `quit` 可退出
 
-## 4. 可选：查看训练曲线
+### 3.4 运行模型评估
+```powershell
+python src\evaluate.py
+```
+说明：
+- 加载 `models/best.pt` 作为评估模型
+- 使用 `data/processed/test.jsonl` 对模型进行准确率评估
+
+## 4. 评估结果
+当前模型测试集准确率（Accuracy）：
+
+**91.49%**
+
+## 5. 可选：查看训练曲线
 训练过程中可在另一个终端运行：
 
 ```powershell
@@ -59,11 +73,12 @@ tensorboard --logdir logs
 ```
 然后在浏览器打开命令行给出的本地地址（通常是 `http://localhost:6006`）。
 
-## 5. 一次性完整流程
+## 6. 一次性完整流程
 如果你从零开始，可按下面顺序执行：
 
 ```powershell
 python src\process.py
 python src\train.py
+python src\evaluate.py
 python src\predict.py
 ```
